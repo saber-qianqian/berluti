@@ -52,6 +52,25 @@ var controlFns = {
 
 		this.ajaxTo(php[params])
 	}
+	, courseware: function(params) {
+		var php = {
+			'update': '/api/courseware/update'
+			, 'delete': '/api/courseware/delete'
+			, 'show': '/api/courseware/show'
+		}
+
+		this.ajaxTo(php[params])
+	}
+	, page: function(params) {
+		var php = {
+			'create': '/api/page/create'
+			, 'update': '/api/page/update'
+			, 'delete': '/api/page/delete'
+			, 'show': '/api/page/show'
+		}
+
+		this.ajaxTo(php[params])
+	}
 	, log: function(params){
 		var php = {
 			'show': '/api/log/show'
