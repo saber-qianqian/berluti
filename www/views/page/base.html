@@ -1,0 +1,20 @@
+<%# block/head.html %>
+
+<section class="main">
+	<base></base>
+	<vs-dropdown
+	  text="Action"
+	  size="md"
+	  variant="success"
+	  :arrow="arrow"
+	  :caret="true"
+	  dropup>
+	  <ul class="dropdown-menu dropdown-menu-left">
+	      <li><a class="dropdown-item" href="#" @click="showme">Completed</a></li>
+	      <li><a class="dropdown-item" href="#">Pending</a></li>
+	  </ul>
+	</vs-dropdown>
+</section>
+
+<%== loader.loadJS(['page/base']); %>
+<%# block/foot.html %>

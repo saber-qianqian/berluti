@@ -1,0 +1,33 @@
+<%# block/head.html %>
+
+<div class="main">
+	<cms-header></cms-header>
+
+	<div class="left_block">
+		<cms-nav :navdata="<%= JSON.stringify(this.nav) %>"></cms-nav>
+	</div>
+
+	<div class="right_block">
+		<breadcrumb :navdata="<%= JSON.stringify(this.nav) %>" :rooter="'<%= this.pagerooter %>'"></breadcrumb>
+
+		<div class="content">
+			<div class="table_name">定制页</div>
+
+			<div class="box">
+				<div class="box_name">发布内容</div>
+				<textarea></textarea>
+				<p>仅支持HTML5源码</p>
+			</div>
+
+			<div class="box_preview_btns">
+				<div class="btn btn-primary">预览效果</div>
+				<div class="btn btn-primary">保存内容</div>
+				<div class="btn btn-primary">发布内容</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%== loader.loadJS(['page/other/style']); %>
+
+<%# block/foot.html %>

@@ -1,0 +1,19 @@
+@import 'block.less';
+@import 'open/sweet/alert.less';
+
+html,
+body{ .bgc(#4a90e2);.pr;height: 100%; }
+
+.section{ .pa;top: 50%;left: 50%;margin: -180px 0 0 -255px;padding: 5px;.ovh;.bgc(rgba(0,0,0,.2));.border-r(20px); }
+.form_wrap{
+	.w(500px);.h(350px);padding: 0 50px;.bgc(#fff);.border-r(15px);
+
+	.title{ .f(36px);.fc(#333);.fb;.l(3);.c; }
+	.nickname,
+	.password{
+		.h(46px);.mb(30px);
+
+		input{ .w(100%);.l(44px);border: none;outline: none;.f(20px);.fc(#636363);border-bottom: 1px solid #979797; }
+	}
+	.submit_btn{ .block;.w(150px);.l(36px);.f(20px);.fc(#fff);.bgc(#4a90e2);.c;.auto;border: none;.border-r(10px);.mt(40px); }
+}

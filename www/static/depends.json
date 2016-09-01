@@ -1,0 +1,7 @@
+{
+	"global": [
+		"core/package/jquery/jquery",
+		"core/package/vue/vue",
+		"core/package/bootstrap/bootstrap.min"
+	]
+}

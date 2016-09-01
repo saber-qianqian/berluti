@@ -1,0 +1,18 @@
+<%# block/head.html %>
+
+<div class="main">
+	<cms-header></cms-header>
+
+	<div class="left_block">
+		<cms-nav :navdata="<%= JSON.stringify(this.nav) %>"></cms-nav>
+	</div>
+
+	<div class="right_block">
+		<breadcrumb :navdata="<%= JSON.stringify(this.nav) %>" :rooter="'<%= this.pagerooter %>'"></breadcrumb>
+		<cms-expect></cms-expect>
+	</div>
+</div>
+
+<%== loader.loadJS(['page/welcome']); %>
+
+<%# block/foot.html %>

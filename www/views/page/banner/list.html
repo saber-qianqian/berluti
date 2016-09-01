@@ -1,0 +1,57 @@
+<%# block/head.html %>
+
+<div class="main">
+	<cms-header></cms-header>
+
+	<div class="left_block">
+		<cms-nav :navdata="<%= JSON.stringify(this.nav) %>"></cms-nav>
+	</div>
+
+	<div class="right_block">
+		<breadcrumb :navdata="<%= JSON.stringify(this.nav) %>" :rooter="'<%= this.pagerooter %>'"></breadcrumb>
+
+		<div class="content">
+			<div class="table_name">最新课程管理</div>
+			<vuetable v-ref:vuetable
+				api-url="/aj/api/courselist/show"
+				:fields="fields"
+				table-class="table table-bordered table-striped table-hover"
+				ascending-icon="glyphicon glyphicon-chevron-up"
+				descending-icon="glyphicon glyphicon-chevron-down"
+				pagination-class=""
+				pagination-info-class=""
+				pagination-component-class=""
+				pagination-info-template="当前页显示 {from} 到 {to} 条数据，总共有 {total} 条数据"
+				:pagination-component="paginationComponent"
+				:item-actions="itemActions"
+				:append-params="moreParams"
+
+				wrapper-class="vuetable-wrapper"
+				table-wrapper=".vuetable-wrapper"
+
+				detail-row-id="id"
+				detail-row-transition="expand"
+				row-class-callback="rowClassCB"
+
+				:selected-to="selectedRows"
+				:query-params="{sort: 'sort', page: 'page',perPage: 'size'}"
+				:data-path="''"
+				pagination-path=""
+			>
+				<div class="top_tools" slot="top">
+					<div class="btn btn-primary btn-sm" @click="openCreateUrl('')"><i class="glyphicon glyphicon-plus"></i> 新增</div>
+					<div class="btn btn-danger btn-sm" @click="removeDataByIds" v-show="selectedRows.length"><i class="glyphicon glyphicon-trash"></i> 删除已选项</div>
+				</div>
+				<div class="top_tools" slot="center">
+					<div class="btn btn-primary btn-sm" @click="selectedAll">全选</div>
+					<div class="btn btn-primary btn-sm" @click="selectedInvert">反选</div>
+					<div class="btn btn-danger btn-sm" @click="removeDataByIds" v-show="selectedRows.length"><i class="glyphicon glyphicon-trash"></i> 删除已选项</div>
+				</div>
+			</vuetable>
+		</div>
+	</div>
+</div>
+
+<%== loader.loadJS(['page/banner/list']); %>
+
+<%# block/foot.html %>

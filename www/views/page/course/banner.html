@@ -1,0 +1,39 @@
+<%# block/head.html %>
+
+<div class="main">
+	<cms-header></cms-header>
+
+	<div class="left_block">
+		<cms-nav :navdata="<%= JSON.stringify(this.nav) %>"></cms-nav>
+	</div>
+
+	<div class="right_block">
+		<breadcrumb :navdata="<%= JSON.stringify(this.nav) %>" :rooter="'<%= this.pagerooter %>'"></breadcrumb>
+
+		<div class="content">
+			<div class="table_name">最新课程</div>
+			<div class="form_box">
+				<bs-input
+					label="所属课程"
+					:value.sync="course_id"
+					help="填写已创建的课程唯一编号"
+				></bs-input>
+				<upload-image label="上传封面" class="form-group"></upload-image>
+				<bs-input
+					label="课程属性"
+					:value.sync="brief"
+				></bs-input>
+			</div>
+			<div class="tool_box">
+				<div class="btn btn-primary">预览效果</div>
+				<div class="btn btn-primary">保存最新课程</div>
+				<div class="btn btn-primary">创建最新课程</div>
+				<div class="btn btn-primary">发布最新课程</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%== loader.loadJS(['page/course/banner']); %>
+
+<%# block/foot.html %>

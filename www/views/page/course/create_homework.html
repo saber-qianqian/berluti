@@ -1,0 +1,45 @@
+<%# block/head.html %>
+
+<div class="main">
+	<cms-header></cms-header>
+
+	<div class="left_block">
+		<cms-nav :navdata="<%= JSON.stringify(this.nav) %>"></cms-nav>
+	</div>
+
+	<div class="right_block">
+		<breadcrumb :navdata="<%= JSON.stringify(this.nav) %>" :rooter="'<%= this.pagerooter %>'"></breadcrumb>
+
+		<div class="content">
+			<div class="table_name">作业管理</div>
+			<div class="form_box">
+				<bs-input
+					label="所属课程"
+					:value.sync="course_id"
+					help="填写已创建的课程唯一编号"
+				></bs-input>
+				<bs-input
+					label="作业须知"
+					:value.sync="homework_name"
+					placeholder="作业须知"
+				></bs-input>
+				<bs-input
+					label="作业须知详情"
+					:value.sync="homework_name"
+					placeholder="作业须知详情"
+					type="textarea"
+				></bs-input>
+			</div>
+			<div class="tool_box">
+				<div class="btn btn-primary">预览效果</div>
+				<div class="btn btn-primary">保存作业</div>
+				<div class="btn btn-primary">创建作业</div>
+				<div class="btn btn-primary">发布作业</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%== loader.loadJS(['page/course/create_homework']); %>
+
+<%# block/foot.html %>
