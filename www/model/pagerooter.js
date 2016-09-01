@@ -18,6 +18,10 @@ var navData = {
 				name: '作业管理'
 				, url: '/manage/practice/list/main'
 			}
+			, courseware: {
+				name: '课件管理'
+				, url: '/manage/courseware/list/main'
+			}
 			, courselist: {
 				name: '最新课程管理'
 				, url: '/manage/courselist/list/main'
@@ -31,9 +35,9 @@ var navData = {
 				name: '首页'
 				, url: '/manage/content/welcome/main'
 			}
-			, custom: {
+			, page: {
 				name: '定制页'
-				, url: '/manage/content/custom/main'
+				, url: '/manage/page/list/main'
 			}
 			, qsa: {
 				name: '调查问卷'
