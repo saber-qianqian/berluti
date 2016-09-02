@@ -28,7 +28,7 @@ var vm = new Vue({
 			course_id: '',
 			entity: '',
 			attachment: '',
-			occurrence_time: '',
+			epoch: '',
 			id: urlParams.id || '',
 			entity_type: 1
 		}
@@ -40,7 +40,7 @@ var vm = new Vue({
 			var formdata = {
 				id: mSelf.id,
 				attachment: mSelf.attachment,
-				occurrence_time: mSelf.occurrence_time
+				epoch: mSelf.epoch
 			}
 			var url = api.update
 
@@ -68,8 +68,8 @@ var vm = new Vue({
 					mSelf.entity = resData.entity
 					mSelf.course_id = '' + resData.course_id
 					mSelf.entity_type = resData.entity_type
-					mSelf.occurrence_time = resData.entity.epoch || 0
-					mSelf.entity.url = 'http://' + mSelf.entity.url
+					mSelf.epoch = resData.epoch || 0
+					mSelf.entity.url = mSelf.entity.url
 				}
 			}, 'json')
 		}

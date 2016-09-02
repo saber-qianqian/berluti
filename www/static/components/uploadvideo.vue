@@ -46,6 +46,7 @@
 			, value: ''
 			, url: {
 				type: String
+				, default: ''
 			}
 			, name: ''
 		}
@@ -471,6 +472,8 @@
 		}
 		, ready: function(){
 			var mSelf = this
+
+			if(mSelf.url){ mSelf.initAudio() }
 
 			uploadBtn.bind('.img_upload_btn', {
 				'behind': '/api/upload/audios'

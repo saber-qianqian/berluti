@@ -18,7 +18,7 @@
 					:value.sync="course_id"
 					:disabled="true"
 				></bs-input>
-				<upload-time v-if="entity_type == 1" class="form-group" :value.sync="attachment" :urls="[entity.url]" :time.sync="occurrence_time" label="上传图片"></upload-time>
+				<upload-time v-if="entity_type == 1" class="form-group" :value.sync="attachment" :urls="[entity.url]" :time.sync="epoch" label="上传图片"></upload-time>
 				<upload-video v-else class="form-group" :value.sync="attachment" :name="entity.name" :url="entity.url" label="上传音频"></upload-video>
 			</div>
 			<div class="tool_box">

@@ -46,12 +46,7 @@
 				default: null
 			}
 			, value: ''
-			, urls: {
-				type: Array
-				, default: function(){
-					return ['http://gn0.dev/images/2016-09-01/64c3eac19274f431750c72a0cc4476b7088deef0779d78a2e6460a1529dd1955.png']
-				}
-			}
+			, urls: []
 			, time: ''
 			, multi: {
 				type: Boolean,

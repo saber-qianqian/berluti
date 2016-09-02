@@ -21,7 +21,7 @@ var vm = new Vue({
 		breadcrumb: require('core/www/breadcrumb.vue'),
 
 		bsInput: bs.input,
-		uploadImage: require('upload.vue'),
+		uploadTime: require('uploadtime.vue'),
 		uploadVideo: require('uploadvideo.vue')
 	},
 	data: function(){
