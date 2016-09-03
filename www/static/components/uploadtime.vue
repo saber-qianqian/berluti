@@ -11,6 +11,8 @@
 			.image{ .w(268px);.h(268px);background: #333 no-repeat center;background-size: contain; }
 
 		}
+		.panel-header{ .ovh; }
+		.close{ .right;padding: 5px; }
 	}
 </style>
 
@@ -18,17 +20,18 @@
 	<div class="upload-time-box">
 		<label v-if="label" class="control-label">{{label}}</label>
 		<div class="img_upload_btn panel panel-default">
-			<div class="panel-body"><span class="glyphicon glyphicon-cloud-upload"></span> {{ value ? '重新上传' : '上传文件' }}</div>
+			<div class="panel-body"><span class="glyphicon glyphicon-cloud-upload"></span> {{ value.length && !multi ? '重新上传' : '上传文件' }}</div>
 		</div>
 		<div class="preview">
-			<div class="item panel panel-primary" v-for="item in urls">
+			<div class="item panel panel-primary" v-for="(index, url) in urls" track-by="$index">
+				<div class="panel-header"><span class="close glyphicon glyphicon-remove" @click="removeItem(value[index], index)"></span></div>
 				<div class="panel-body">
-					<div class="image btn btn-default" :style="{ 'background-image': 'url(' + item + ')' }"></div>
+					<div class="image btn btn-default" :style="{ 'background-image': 'url(' + url + ')' }"></div>
 				</div>
 				<div class="time panel-footer">
 					<div class="input-group">
 						<span class="input-group-addon">设置图片出现时间：</span>
-						<input type="number" class="form-control" v-model="time">
+						<input type="number" class="form-control" v-model="time[index]" @change="changeTime(value[index], index)">
 						<span class="input-group-addon">s</span>
 					</div>
 				</div>
@@ -45,12 +48,40 @@
 				type: String,
 				default: null
 			}
-			, value: ''
-			, urls: []
-			, time: ''
+			, value: {
+				type: Array,
+				default: function(){
+					return []
+				}
+			}
+			, urls: {
+				type: Array,
+				default: function(){
+					return []
+				}
+			}
+			, time: {
+				type: Array,
+				default: function(){
+					return []
+				}
+			}
 			, multi: {
 				type: Boolean,
 				default: false
+			}
+		}
+		, methods: {
+			removeItem: function(id, index){
+				var mSelf = this
+
+				this.$dispatch('deleteTime', id)
+				this.urls.splice(index, 1)
+				this.time.splice(index, 1)
+				this.images.splice(index, 1)
+			}
+			, changeTime: function(courseware_id, index){
+				this.$dispatch('changeTime', courseware_id, index)
 			}
 		}
 		, ready: function(){
@@ -61,11 +92,9 @@
 				, 'inputName': 'images'
 				, 'success': function(res){
 					if(res.status_code == 200){
-						if(!mSelf.multi){
-							mSelf.urls = []
-							mSelf.urls.push(res.data.url)
-							mSelf.value = res.data.id
-						}
+						mSelf.urls.push(res.data.url)
+						mSelf.value.push(res.data.id)
+						mSelf.time.push(0)
 					}
 				}
 			})

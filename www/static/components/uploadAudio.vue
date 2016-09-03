@@ -23,7 +23,7 @@
 	<div class="upload-audio-box">
 		<label v-if="label" class="control-label">{{label}}</label>
 		<div class="img_upload_btn panel panel-default">
-			<div class="panel-body"><span class="glyphicon glyphicon-cloud-upload"></span> {{ value ? '重新上传' : '上传文件' }}</div>
+			<div class="panel-body"><span class="glyphicon glyphicon-cloud-upload"></span> {{ url ? '重新上传' : '上传文件' }}</div>
 		</div>
 		<div class="audio_show panel panel-primary" v-if="url">
 			<div class="name panel-heading">{{ '音频文件名： ' + name }}</div>
