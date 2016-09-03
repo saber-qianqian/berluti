@@ -20,7 +20,7 @@ var controlFns = {
 		this.listenOver(function(data) {
 			data._CSSLinks = ['app', 'page/other/style'];
 
-			this.render('page/other/style.html', data);
+			this.render('page/expect.html', data);
 		});
 	}
 	, style: function(id) {
@@ -31,7 +31,7 @@ var controlFns = {
 		this.listenOver(function(data) {
 			data._CSSLinks = ['app', 'page/other/style'];
 
-			this.render('page/other/style.html', data);
+			this.render('page/expect.html', data);
 		});
 	}
 	, material: function(id) {
@@ -42,7 +42,7 @@ var controlFns = {
 		this.listenOver(function(data) {
 			data._CSSLinks = ['app', 'page/other/style'];
 
-			this.render('page/other/style.html', data);
+			this.render('page/expect.html', data);
 		});
 	}
 }

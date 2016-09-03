@@ -17,7 +17,7 @@ var controlFns = {
 		this.listenOver(function(data) {
 			data._CSSLinks = ['app', 'page/system/user'];
 
-			this.render('page/system/user.html', data);
+			this.render('page/expect.html', data);
 		});
 	}
 	, common: function(id) {
