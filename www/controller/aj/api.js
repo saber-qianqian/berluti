@@ -71,6 +71,16 @@ var controlFns = {
 
 		this.ajaxTo(php[params])
 	}
+	, survey: function(params) {
+		var php = {
+			'create': '/api/survey/create'
+			, 'update': '/api/survey/update'
+			, 'delete': '/api/survey/delete'
+			, 'show': '/api/survey/show'
+		}
+
+		this.ajaxTo(php[params])
+	}
 	, log: function(params){
 		var php = {
 			'show': '/api/log/show'

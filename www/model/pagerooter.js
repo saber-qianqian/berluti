@@ -41,7 +41,7 @@ var navData = {
 			}
 			, qsa: {
 				name: '调查问卷'
-				, url: '/manage/content/qsa/main'
+				, url: '/manage/survey/list/main'
 			}
 		}
 	}
