@@ -15,7 +15,7 @@ var vm = new Vue({
 		breadcrumb: require('core/www/breadcrumb.vue'),
 
 		bsInput: bs.input,
-		datepicker: bs.datepicker,
+		datepicker: require('datepicker.vue'),
 		uploadImage: require('upload.vue')
 	},
 	data: function(){
@@ -31,10 +31,10 @@ var vm = new Vue({
 				price: '',
 				students_limit: '10',
 				class_size: '10',
-				course_start: '2016-08-08 00:00:00',
-				course_end: '2016-08-20 00:00:00',
-				registration_start: '2016-08-01 00:00:00',
-				registration_end: '2016-08-07 00:00:00',
+				course_start: '',
+				course_end: '',
+				registration_start: '',
+				registration_end: '',
 				brief: '',
 				objective: '',
 				lecturer_brief: '',
@@ -44,12 +44,41 @@ var vm = new Vue({
 			, cover_uirl: ''
 		}
 	},
+	watch: {
+		'formdata.course_start': function(new_val){
+			this.dateCorrectEarly('course_start', 'course_end', true)
+		},
+		'formdata.course_end': function(new_val){
+			this.dateCorrectEarly('course_start', 'course_end', false)
+		},
+		'formdata.registration_start': function(new_val){
+			this.dateCorrectEarly('registration_start', 'registration_end', true)
+		},
+		'formdata.registration_end': function(new_val){
+			this.dateCorrectEarly('registration_start', 'registration_end', false)
+		}
+	},
 	methods: {
 		maska: function(value) {
 			return value > 0
 		}
 		, maskat: function(value) {
 			return value > 0 && value % 10 === 0
+		}
+		, dateCorrectEarly: function(pre, next, type){
+			var formdata = this.formdata
+
+			if(!(new Date(formdata[pre]) < new Date(formdata[next]))){
+				if(type){
+					sweetAlert({ title: '开始时间应该小于结束时间', type: 'warning' }, function(){
+						formdata[pre] = formdata[next]
+					})
+				} else {
+					sweetAlert({ title: '结束时间应该大于开始时间', type: 'warning' }, function(){
+						formdata[next] = formdata[pre]
+					})
+				}
+			}
 		}
 		, saveCourse: function() {
 			var mSelf = this
