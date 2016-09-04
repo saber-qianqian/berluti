@@ -1,7 +1,7 @@
 <%# block/head.html %>
 
 <div class="main">
-	<cms-header></cms-header>
+	<cms-header :userinfo="<%= JSON.stringify(this.userinfo.data) %>"></cms-header>
 
 	<div class="left_block">
 		<cms-nav :navdata="<%= JSON.stringify(this.nav) %>"></cms-nav>

@@ -8,16 +8,15 @@
 
 <template>
 	<div class="header-box">
-		<div class="avatar" style="background-image: url('http://img.zcool.cn/community/01f6a757ad56a20000012e7e502623.jpg')"></div>
-		<div class="say_hi">{{ '身份' }}： {{ '用户名' }} 你好，欢迎回来！</div>
+		<div class="avatar" :style="{ 'background-image': 'url(' + userinfo.avatar.image_poster + ')' }"></div>
+		<div class="say_hi">{{ '身份' }}：{{ userinfo.nick_name }} 你好，欢迎回来！</div>
 		<a href="/manage/user/login/">退出</a>
 	</div>
 </template>
 
 <script>
 	return {
-		components : {}
-		, props : []
+		props : ['userinfo']
 		, data : function(){
 			return {}
 		}
