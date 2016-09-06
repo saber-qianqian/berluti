@@ -3,14 +3,19 @@
 		.ovh;
 
 		input{ .h(100%); }
-		.img_upload_btn{ .left;.w(200px);.h(100px);.c;.l(100px);background: #666 center no-repeat;background-size: cover; }
+		.img_upload_btn{ .left;.w(200px);.h(137px);.f(24px);.c; }
+		.image_preview{ background: #666 center no-repeat;background-size: cover;.h(100%); }
 	}
 </style>
 
 <template>
 	<div class="upload-box">
 		<label v-if="label" class="control-label">{{label}}</label>
-		<div class="img_upload_btn" :style="{ 'background-image': 'url(' + url + ')' }"></div>
+		<!-- <div class="img_upload_btn" :style="{ 'background-image': 'url(' + url + ')' }"></div> -->
+		<div class="img_upload_btn panel panel-default">
+			<div class="panel-body" v-if="!url"><span class="glyphicon glyphicon-cloud-upload"></span> {{ value.length && !multi ? '重新上传' : '上传文件' }}</div>
+			<div class="image_preview panel-body" v-else  :style="{ 'background-image': 'url(' + url + ')' }"></div>
+		</div>
 	</div>
 </template>
 
