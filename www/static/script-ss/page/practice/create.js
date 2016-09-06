@@ -12,7 +12,9 @@ var vm = new Vue({
 		cmsNav: require('core/www/nav.vue'),
 		breadcrumb: require('core/www/breadcrumb.vue'),
 
-		bsInput: bs.input
+		bsInput: bs.input,
+		aside: bs.aside,
+		previewCourse: require('preview/practice.vue')
 	},
 	data: function(){
 		return{
@@ -23,6 +25,8 @@ var vm = new Vue({
 				course_id: urlParams.course_id || ''
 			}
 			, id: urlParams.id || ''
+
+			, preview_show: false
 		}
 	},
 	methods: {
@@ -60,6 +64,10 @@ var vm = new Vue({
 					mSelf.id = ''
 				}
 			}, 'json')
+		}
+		, previewPage: function(){
+			this.preview_show = true
+			this.$broadcast('loaddata')
 		}
 	},
 	ready: function(){
