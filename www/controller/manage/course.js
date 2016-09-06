@@ -7,18 +7,6 @@ var controlFns = {
 			case 'create':
 				this.create();
 				break;
-			case 'chapter':
-				this.chapter();
-				break;
-			case 'courseware':
-				this.courseware();
-				break;
-			case 'homework':
-				this.homework();
-				break;
-			case 'create_homework':
-				this.create_homework();
-				break;
 			default:
 				this.banner();
 				break;
@@ -174,51 +162,6 @@ var controlFns = {
 
 
 			this.render('page/course/create.html', data);
-		});
-	},
-	chapter: function(id) {
-		var php = {};
-
-		this.bindDefault(php);
-		this.bridgeMuch(php);
-		this.listenOver(function(data) {
-			data._CSSLinks = ['app', 'page/course/table'];
-
-			this.render('page/course/table.html', data);
-		});
-	},
-	courseware: function(id) {
-		var php = {};
-
-		this.bindDefault(php);
-		this.bridgeMuch(php);
-		this.listenOver(function(data) {
-			data._CSSLinks = ['app', 'page/course/table'];
-
-			this.render('page/course/table.html', data);
-		});
-	},
-	homework: function(id) {
-		var php = {};
-
-		this.bindDefault(php);
-		this.bridgeMuch(php);
-		this.listenOver(function(data) {
-			data._CSSLinks = ['app', 'page/course/table'];
-
-			this.render('page/course/table.html', data);
-		});
-	},
-	create_homework: function(id) {
-		var php = {};
-
-		this.bindDefault(php);
-		this.bridgeMuch(php);
-		this.listenOver(function(data) {
-			data._CSSLinks = ['app', 'page/course/create_homework'];
-			data.pagerooter = 'course.homework'
-
-			this.render('page/course/create_homework.html', data);
 		});
 	},
 	banner: function(id) {
