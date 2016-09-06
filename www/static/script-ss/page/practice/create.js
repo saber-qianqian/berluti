@@ -17,8 +17,9 @@ var vm = new Vue({
 	data: function(){
 		return{
 			formdata: {
+				name: '',
+				content: '',
 				description: '',
-				brief: '',
 				course_id: urlParams.course_id || ''
 			}
 			, id: urlParams.id || ''

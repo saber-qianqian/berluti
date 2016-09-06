@@ -19,8 +19,13 @@
 					help="填写已创建的课程唯一编号"
 				></bs-input>
 				<bs-input
-					label="作业须知"
-					:value.sync="formdata.brief"
+					label="作业标题"
+					:value.sync="formdata.name"
+				></bs-input>
+				<bs-input
+					label="作业详情"
+					:value.sync="formdata.content"
+					type="textarea"
 				></bs-input>
 				<bs-input
 					label="作业须知详情"

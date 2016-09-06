@@ -9,7 +9,7 @@ var controlFns = {
 		this.bridgeMuch(php);
 		this.listenOver(function(data) {
 
-			data.pagerooter = 'course.homework'
+			data.pagerooter = 'course.practice'
 			data._CSSLinks = ['app', 'page/course/table'];
 
 			this.render('page/practice/list.html', data);
@@ -22,7 +22,8 @@ var controlFns = {
 		this.bridgeMuch(php);
 		this.listenOver(function(data) {
 
-			data.pagerooter = 'course.homework'
+			data.pageTitle="作业管理";
+			data.pagerooter = 'course.practice'
 			data._CSSLinks = ['app', 'page/chapter/create'];
 
 			this.render('page/practice/create.html', data);
