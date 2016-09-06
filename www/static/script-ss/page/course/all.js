@@ -267,8 +267,5 @@ var vm = new Vue({
 				sweetAlert('Oops', E_SERVER_ERROR, 'error')
 			}
 		}
-	},
-	ready: function(){
-		this.previewCourse(20)
 	}
 })
