@@ -107,6 +107,7 @@ exports.getPageRooter = function(req) {
 
 exports.getPageTitle = function(req) {
 	var url = req.url
+	url = url.replace('/manage', '')
 	var page_name = url.split('?')[0] || '/welcome'
 
 	var uriStrings = page_name.split('/')

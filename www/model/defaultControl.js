@@ -10,6 +10,10 @@ function defaultAction(php, channel) {
 		return evt(nav.getPageRooter(mSelf.req))
 	}, 'pagerooter')()
 
+	this.listenOn(function(evt) {
+		return evt(nav.getPageTitle(mSelf.req))
+	}, 'ptitle')()
+
 	this.eventHandle.onOver = function(data) {
 		data.userinfo = {
 			status_code: 200,

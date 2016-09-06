@@ -18,6 +18,8 @@ var controlFns = {
 		this.bindDefault(php);
 		this.bridgeMuch(php);
 		this.listenOver(function(data) {
+
+			data.pageTitle = data.ptitle
 			data._CSSLinks = ['app', 'page/course/table'];
 
 			this.render('page/course/all.html', data);
