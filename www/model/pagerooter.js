@@ -11,8 +11,8 @@ var navData = {
 				, url: '/manage/course/create/main'
 			}
 			, chapter: {
-				name: '章节管理'
-				, url: '/manage/chapter/list/main'
+				name: '课时管理'
+				, url: '/manage/lesson/list/main'
 			}
 			, practice: {
 				name: '作业管理'
