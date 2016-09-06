@@ -199,7 +199,7 @@ var vm = new Vue({
 			if(id){
 				url += '?id=' + id
 			}
-			window.location.href = url
+			window.open(url)
 		},
 
 		removeDataByIds: function(){

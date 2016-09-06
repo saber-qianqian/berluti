@@ -60,13 +60,17 @@ for (var index in tableColumns) {
 	}
 }
 
+var bs = require('core/open/strap/base').VueStrap
 var vm = new Vue({
 	el: '.main',
 	components: {
 		cmsHeader: require('core/www/header.vue'),
 		cmsNav: require('core/www/nav.vue'),
 		breadcrumb: require('core/www/breadcrumb.vue'),
-		cmsTable: require('core/www/expect.vue')
+		cmsTable: require('core/www/expect.vue'),
+
+		aside: bs.aside,
+		previewCourse: require('preview/course.vue')
 	},
 	data: {
 		searchFor: '',
@@ -105,7 +109,10 @@ var vm = new Vue({
 		}],
 		moreParams: ['course_id=' + (params.course_id || '')],
 		selectedProps: selectedProps,
-		selectedRows: []
+		selectedRows: [],
+
+		preview_show: false,
+		preview_id: null
 	},
 	watch: {
 		'perPage': function(val, oldVal) {
@@ -192,7 +199,7 @@ var vm = new Vue({
 				url += '?' + _url_params.join('&')
 			}
 
-			window.location.href = url
+			window.open(url)
 		},
 
 		removeDataByIds: function(){
@@ -237,6 +244,11 @@ var vm = new Vue({
 				}
 			}, 'json')
 		}
+
+		, previewCourse: function(course_id){
+			this.preview_id = course_id
+			this.preview_show = true
+		}
 	},
 	events: {
 		'vuetable:action': function(action, data) {
@@ -244,6 +256,8 @@ var vm = new Vue({
 				this.openCreateUrl(data.id)
 			} else if (action == 'delete-item') {
 				this.deleteCourse(data)
+			} else {
+				this.previewCourse(data.course_id)
 			}
 		},
 		'vuetable:load-error': function(response) {
