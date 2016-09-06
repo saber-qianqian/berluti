@@ -21,7 +21,7 @@ var vm = new Vue({
 
 		bsInput: bs.input,
 		uploadTime: require('uploadtime.vue'),
-		uploadVideo: require('uploadvideo.vue')
+		uploadAudio: require('uploadaudio.vue')
 	},
 	data: function() {
 		return {
