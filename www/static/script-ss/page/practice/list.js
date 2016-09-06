@@ -21,7 +21,7 @@ var tableColumns = [{
 	titleClass: 'text-center',
 	dataClass: 'text-center',
 }, {
-	name: 'brief',
+	name: 'name',
 	title: '标题'
 }, {
 	name: 'course_id',
