@@ -22,7 +22,7 @@
 <template>
 	<div class="upload-audio-box">
 		<label v-if="label" class="control-label">{{label}}</label>
-		<div class="img_upload_btn panel panel-default">
+		<div class="img_upload_btn panel panel-default" v-el:el-upload-btn>
 			<div class="panel-body"><span class="glyphicon glyphicon-cloud-upload"></span> {{ url ? '重新上传' : '上传文件' }}</div>
 		</div>
 		<div class="audio_show panel panel-primary" v-if="url">
@@ -475,7 +475,7 @@
 
 			if(mSelf.url){ mSelf.initAudio() }
 
-			uploadBtn.bind('.img_upload_btn', {
+			uploadBtn.bind($(mSelf.$els.elUploadBtn), {
 				'behind': '/api/upload/audios'
 				, 'inputName': 'audios'
 				, 'success': function(res){

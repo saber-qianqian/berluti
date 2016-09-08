@@ -19,7 +19,7 @@
 <template>
 	<div class="upload-time-box">
 		<label v-if="label" class="control-label">{{label}}</label>
-		<div class="img_upload_btn panel panel-default">
+		<div class="img_upload_btn panel panel-default" v-el:el-upload-btn>
 			<div class="panel-body"><span class="glyphicon glyphicon-cloud-upload"></span> {{ value.length && !multi ? '重新上传' : '上传文件' }}</div>
 		</div>
 		<div class="preview">
@@ -87,7 +87,7 @@
 		, ready: function(){
 			var mSelf = this
 
-			uploadBtn.bind('.img_upload_btn', {
+			uploadBtn.bind($(mSelf.$els.elUploadBtn), {
 				'behind': '/api/upload/images'
 				, 'inputName': 'images'
 				, 'success': function(res){
