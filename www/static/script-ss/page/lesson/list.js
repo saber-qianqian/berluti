@@ -42,11 +42,6 @@ var tableColumns = [{
 	name: 'status',
 	title: '状态'
 }, {
-	name: 'id',
-	title: '子集',
-	callback: 'openChild',
-	dataClass: 'text-center'
-}, {
 	name: '__actions',
 	title: '操作',
 	dataClass: 'text-center',
@@ -127,9 +122,6 @@ var vm = new Vue({
 		/**
 		 * Callback functions
 		 */
-		openChild: function(id){
-			return '<a target="_blank" href="/manage/chapter/list/main?lesson_id=' + id + '&course_id=' + params.course_id + '"><button class="btn btn-info">查看章节</button><a>'
-		},
 		formatDate: function(value, fmt) {
 			if (value == null) return ''
 			fmt = (typeof fmt == 'undefined') ? 'D MMM YYYY' : fmt
