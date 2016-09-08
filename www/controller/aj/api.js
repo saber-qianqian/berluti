@@ -19,6 +19,7 @@ var controlFns = {
 			, 'update': '/api/lesson/update'
 			, 'delete': '/api/lesson/delete'
 			, 'show': '/api/lesson/show'
+			, 'detail': '/api/lesson/detail'
 		}
 
 		this.ajaxTo(php[params])
