@@ -31,6 +31,13 @@
 			<audio controls class="upload_audio">
 				<source :src="url"/>
 			</audio>
+
+			<div class="brief panel-footer">
+				<div class="input-group">
+					<span class="input-group-addon">附件描述：</span>
+					<textarea class="form-control" v-model="brief"></textarea>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -44,6 +51,7 @@
 				default: ''
 			}
 			, value: ''
+			, brief: ''
 			, url: {
 				type: String
 				, default: ''

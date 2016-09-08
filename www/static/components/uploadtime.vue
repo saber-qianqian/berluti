@@ -35,6 +35,12 @@
 						<span class="input-group-addon">s</span>
 					</div>
 				</div>
+				<div class="brief panel-footer">
+					<div class="input-group">
+						<span class="input-group-addon">附件描述：</span>
+						<textarea class="form-control" v-model="brief[index]"></textarea>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -66,6 +72,12 @@
 					return []
 				}
 			}
+			, brief: {
+				type: Array,
+				default: function(){
+					return []
+				}
+			}
 			, multi: {
 				type: Boolean,
 				default: false
@@ -78,6 +90,7 @@
 				this.$dispatch('deleteTime', id)
 				this.urls.splice(index, 1)
 				this.time.splice(index, 1)
+				this.brief.splice(index, 1)
 				this.images.splice(index, 1)
 			}
 			, changeTime: function(courseware_id, index){
@@ -95,6 +108,7 @@
 						mSelf.urls.push(res.data.url)
 						mSelf.value.push(res.data.id)
 						mSelf.time.push(0)
+						mSelf.brief.push('')
 					}
 				}
 			})
