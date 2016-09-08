@@ -105,10 +105,15 @@
 				, 'inputName': 'images'
 				, 'success': function(res){
 					if(res.status_code == 200){
-						mSelf.urls.push(res.data.url)
-						mSelf.value.push(res.data.id)
-						mSelf.time.push(0)
-						mSelf.brief.push('')
+						if(mSelf.multi){
+							mSelf.urls.push(res.data.url)
+							mSelf.value.push(res.data.id)
+							mSelf.time.push(0)
+							mSelf.brief.push('')
+						} else {
+							mSelf.$set('value[0]', res.data.id)
+							mSelf.$set('urls[0]', res.data.url)
+						}
 					}
 				}
 			})

@@ -18,8 +18,8 @@
 					:value.sync="course_id"
 					:disabled="true"
 				></bs-input>
-				<upload-time v-if="entity_type == 1" class="form-group" :value.sync="attachment" :urls="[entity.url]" :time.sync="epoch" label="上传图片"></upload-time>
-				<upload-audio v-else class="form-group" :value.sync="attachment" :name="entity.name" :url="entity.url" label="上传音频"></upload-audio>
+				<upload-time v-if="entity_type == 1" class="form-group" :value.sync="attachment" :urls="url" :time.sync="epoch" label="上传图片" :brief.sync="brief"></upload-time>
+				<upload-audio v-else class="form-group" :value.sync="attachment[0]" :name="entity.name" :url="entity.url" label="上传音频"></upload-audio>
 			</div>
 			<div class="tool_box">
 				<div class="btn btn-primary" @click="saveCreate">保存课件</div>

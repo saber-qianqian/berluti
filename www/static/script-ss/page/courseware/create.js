@@ -27,10 +27,12 @@ var vm = new Vue({
 		return {
 			course_id: '',
 			entity: '',
-			attachment: '',
-			epoch: '',
+			attachment: [],
+			epoch: [],
 			id: urlParams.id || '',
-			entity_type: 1
+			entity_type: 1,
+			brief: [],
+			url: []
 		}
 	},
 	methods: {
@@ -39,8 +41,9 @@ var vm = new Vue({
 
 			var formdata = {
 				id: mSelf.id,
-				attachment: mSelf.attachment,
-				epoch: mSelf.epoch
+				attachment: mSelf.attachment[0],
+				epoch: mSelf.epoch[0],
+				brief: mSelf.brief[0]
 			}
 			var url = api.update
 
@@ -49,7 +52,7 @@ var vm = new Vue({
 					sweetAlert({
 						title: '保存成功'
 					}, function() {
-						window.location.reload()
+						// window.location.reload()
 					})
 				}
 			}, 'json')
@@ -64,12 +67,12 @@ var vm = new Vue({
 			}, function(res) {
 				if (res.status_code == 200) {
 					var resData = res.data
-					mSelf.attachment = resData.entity.id
+					mSelf.attachment.push(resData.entity.id)
 					mSelf.entity = resData.entity
 					mSelf.course_id = '' + resData.course_id
 					mSelf.entity_type = resData.entity_type
-					mSelf.epoch = resData.epoch || 0
-					mSelf.entity.url = mSelf.entity.url
+					mSelf.epoch.push(resData.epoch || 0)
+					mSelf.url.push(resData.entity.url)
 				}
 			}, 'json')
 		}
