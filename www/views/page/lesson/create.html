@@ -27,11 +27,21 @@
 					:value.sync="formdata.brief"
 					type="textarea"
 				></bs-input>
+				<div class="line_tool_box">
+					<div v-if="id" class="btn btn-primary" @click="saveCourse">保存章节</div>
+					<div v-else class="btn btn-primary" @click="saveCourse">创建章节</div>
+				</div>
 			</div>
+
+			<chapter-create
+				v-for="chapter in chapterList"
+				:chapterindex="$index"
+				:chapterdata="chapter"
+			></chapter-create>
+
 			<div class="tool_box">
 				<div class="btn btn-primary">预览效果</div>
-				<div v-if="id" class="btn btn-primary" @click="saveCourse">保存章节</div>
-				<div v-else class="btn btn-primary" @click="saveCourse">创建章节</div>
+				<div class="btn btn-primary" @click="addChpter">添加小节</div>
 			</div>
 		</div>
 	</div>
