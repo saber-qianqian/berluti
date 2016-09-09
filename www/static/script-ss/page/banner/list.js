@@ -170,16 +170,8 @@ var vm = new Vue({
 			}
 		},
 
-		openCreateUrl: function(id){
+		openCreateUrl: function(){
 			var url = '/manage/courselist/create/main'
-			var _url_params = []
-
-			if(id) _url_params.push('id=' + id)
-			if(params.course_id) _url_params.push('course_id=' + params.course_id)
-
-			if(_url_params.length){
-				url += '?' + _url_params.join('&')
-			}
 
 			window.location.href = url
 		},

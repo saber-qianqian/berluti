@@ -1,10 +1,5 @@
 require('core/open/sweet/alert')
 
-var bs = require('core/open/strap/base').VueStrap
-var urlParams = require('core/urlHandle')
-
-urlParams = urlParams.getParams(location.href)
-
 var vm = new Vue({
 	el: '.main',
 	components: {
@@ -12,55 +7,49 @@ var vm = new Vue({
 		cmsNav: require('core/www/nav.vue'),
 		breadcrumb: require('core/www/breadcrumb.vue'),
 
-		bsInput: bs.input,
-		uploadImage: require('upload.vue')
+		previewCourselist: require('preview/courselist.vue'),
+		courselistCreate: require('courselist/create.vue')
 	},
 	data: function(){
 		return{
-			formdata: {
-				cover: '',
-				brief: '',
-				course_id: urlParams.course_id || ''
-			}
-			, id: urlParams.id || ''
+			courselist: []
 		}
 	},
 	methods: {
-		saveCourse: function() {
+		getData: function(){
 			var mSelf = this
 
-			var formdata = JSON.parse(JSON.stringify(this.formdata))
-			var url = '/aj/api/courselist/create'
-
-			if(this.id){
-				formdata.id = this.id
-				url = '/aj/api/courselist/update'
-			}
-
-			$.post(url, formdata, function(res) {
-				if(res.status_code == 200){
-					sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
-						window.location.reload()
-					})
-				}
+			$.get('/aj/api/courselist/preview', {}, function(res){
+				$.each(res.data, function(i, course){
+					course.status = 1
+					mSelf.courselist.push(course)
+				})
 			}, 'json')
 		}
-		, getData: function(){
+		, addCourse: function(){
 			var mSelf = this
 
-			$.get('/aj/api/courselist/show', { id: mSelf.id }, function(res){
-				if(res.status_code == 200){
-					var resData = res.data
-					for(var key in mSelf.formdata){
-						mSelf.formdata[key] = '' + resData[key]
-					}
-				} else {
-					mSelf.id = ''
+			var go = true
+
+			$.each(mSelf.courselist, function(i, chapter){
+				if(chapter.status == 0){
+					sweetAlert({ title: '请先保存还未创建成功的最新课程', type: 'warning' })
+					go = false
 				}
-			}, 'json')
+			})
+
+			if(!go) return
+
+			mSelf.courselist.push({
+				status: 0
+				, id: ''
+				, cover: ''
+				, brief: ''
+				, course_id: ''
+			})
 		}
 	},
 	ready: function(){
-		if(this.id) this.getData()
+		this.getData()
 	}
 })
