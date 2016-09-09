@@ -4,15 +4,14 @@
 
 		input{ .h(100%); }
 		.img_upload_btn{ .left;.w(200px);.h(137px);.f(24px);.c; }
-		.image_preview{ background: #666 center no-repeat;background-size: cover;.h(100%); }
+		.image_preview{ background: #666 center no-repeat;background-size: contain;.h(100%); }
 	}
 </style>
 
 <template>
 	<div class="upload-box">
 		<label v-if="label" class="control-label">{{label}}</label>
-		<!-- <div class="img_upload_btn" :style="{ 'background-image': 'url(' + url + ')' }"></div> -->
-		<div class="img_upload_btn panel panel-default">
+		<div class="img_upload_btn panel panel-default" v-el:img-upload-btn>
 			<div class="panel-body" v-if="!url"><span class="glyphicon glyphicon-cloud-upload"></span> {{ value.length && !multi ? '重新上传' : '上传文件' }}</div>
 			<div class="image_preview panel-body" v-else  :style="{ 'background-image': 'url(' + url + ')' }"></div>
 		</div>
@@ -30,7 +29,7 @@
 			, value: ''
 			, url: {
 				type: String,
-				default: 'http://gn0.dev/images/2016-08-30/93175b0769207644df04b892ed6af6f1437d875b28e788755561e571037efa53.jpeg'
+				default: ''
 			}
 			, multi: {
 				type: Boolean,
@@ -40,7 +39,7 @@
 		, ready: function(){
 			var mSelf = this
 
-			uploadBtn.bind('.img_upload_btn', {
+			uploadBtn.bind($(this.$els.imgUploadBtn), {
 				'behind': '/api/upload/images'
 				, 'inputName': 'images'
 				, 'success': function(res){
