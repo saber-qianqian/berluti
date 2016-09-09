@@ -50,6 +50,7 @@ var controlFns = {
 			, 'update': '/api/courselist/update'
 			, 'delete': '/api/courselist/delete'
 			, 'show': '/api/courselist/show'
+			, 'preview': '/api/courselist/preview'
 		}
 
 		this.ajaxTo(php[params])
