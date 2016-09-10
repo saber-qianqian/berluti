@@ -6,25 +6,26 @@
 
 <template>
 	<div class="component-chapter-create-box">
-		<div class="table_name">章节</div>
+		<div class="table_name">{{ getChapterIndex(chapterindex+1) }}</div>
 		<div class="form_box">
 			<bs-input
-				label="章节名"
+				label="小节名"
 				:value.sync="formdata.name"
 			></bs-input>
 			<bs-input
-				label="章节简介"
+				label="小节简介"
 				:value.sync="formdata.brief"
 				type="textarea"
 			></bs-input>
-			<upload-time class="form-group" :multi="true" :value.sync="images" :time.sync="times" :brief.sync="time_briefs" :urls="image_urls" label="上传图片"></upload-time>
-			<upload-audio class="form-group" :brief.sync="audio_brief" :value.sync="audio_new" :name="audio_name" :url="audio_url" label="上传音频"></upload-audio>
+			<upload-time class="form-group" :multi="true" :value.sync="images" :time.sync="times" :brief.sync="time_briefs" :urls="image_urls" label="上传图片" :disabled="true"></upload-time>
+			<upload-audio class="form-group" :brief.sync="audio_brief" :value.sync="audio_new" :name="audio_name" :url="audio_url" label="上传音频" :disabled="!!audio_url"></upload-audio>
 		</div>
 		<div class="line_tool_box">
 			<div v-if="id" class="btn btn-primary" @click="saveCreate">保存小节</div>
 			<div v-else class="btn btn-primary" @click="saveCreate">创建小节</div>
 
-			<div v-if="id" class="btn btn-primary" @click="deleteItem">删除小节</div>
+			<div v-if="id" class="btn btn-warning" @click="deleteItem">删除小节</div>
+			<div v-if="id" class="btn btn-primary" @click="saveCreate">管理已添加的附件</div>
 		</div>
 	</div>
 </template>
@@ -113,6 +114,20 @@
 						sweetAlert('删除失败', res.message, 'error')
 					}
 				}, 'json')
+			}
+			, getChapterIndex: function(index){
+				var han = ['', "一", "二", "三", "四", "五", "六", "七", "八", "九"]
+				var outOrder = ''
+				var tmp = index / 10
+
+				if(tmp >= 1){
+					outOrder += (parseInt(tmp) > 1 ? han[parseInt(tmp)] : '') + '十'
+				}
+				if(index % 10){
+					outOrder += han[index % 10]
+				}
+
+				return '第' + outOrder + '节'
 			}
 		}
 		, created: function(){

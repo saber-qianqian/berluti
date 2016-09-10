@@ -22,7 +22,7 @@
 <template>
 	<div class="upload-audio-box">
 		<label v-if="label" class="control-label">{{label}}</label>
-		<div class="img_upload_btn panel panel-default" v-el:el-upload-btn>
+		<div v-show="!disabled" class="img_upload_btn panel panel-default" v-el:el-upload-btn>
 			<div class="panel-body"><span class="glyphicon glyphicon-cloud-upload"></span> {{ url ? '重新上传' : '上传文件' }}</div>
 		</div>
 		<div class="audio_show panel panel-primary" v-if="url">
@@ -35,7 +35,7 @@
 			<div class="brief panel-footer">
 				<div class="input-group">
 					<span class="input-group-addon">附件描述：</span>
-					<textarea class="form-control" v-model="brief"></textarea>
+					<textarea :disabled="disabled" class="form-control" v-model="brief"></textarea>
 				</div>
 			</div>
 		</div>
@@ -57,6 +57,7 @@
 				, default: ''
 			}
 			, name: ''
+			, disabled: ''
 		}
 		, methods: {
 			initAudio: function(){
@@ -483,17 +484,19 @@
 
 			if(mSelf.url){ mSelf.initAudio() }
 
-			uploadBtn.bind($(mSelf.$els.elUploadBtn), {
-				'behind': '/api/upload/audios'
-				, 'inputName': 'audios'
-				, 'success': function(res){
-					if(res.status_code == 200){
-						mSelf.value = res.data.id
-						mSelf.url = res.data.url
-						mSelf.name = res.data.name
+			if(!this.disabled){
+				uploadBtn.bind($(mSelf.$els.elUploadBtn), {
+					'behind': '/api/upload/audios'
+					, 'inputName': 'audios'
+					, 'success': function(res){
+						if(res.status_code == 200){
+							mSelf.value = res.data.id
+							mSelf.url = res.data.url
+							mSelf.name = res.data.name
+						}
 					}
-				}
-			})
+				})
+			}
 		}
 	}
 

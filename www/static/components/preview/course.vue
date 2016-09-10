@@ -120,5 +120,10 @@
 				return '第' + outOrder + '章'
 			}
 		}
+		, ready: function(){
+			if(this.courseid){
+				this.getCourseDetail(this.courseid)
+			}
+		}
 	}
 </script>

@@ -31,14 +31,14 @@
 				<div class="time panel-footer">
 					<div class="input-group">
 						<span class="input-group-addon">设置图片出现时间：</span>
-						<input type="number" class="form-control" v-model="time[index]" @change="changeTime(value[index], index)">
+						<input :disabled="disabled" type="number" class="form-control" v-model="time[index]" @change="changeTime(value[index], index)">
 						<span class="input-group-addon">s</span>
 					</div>
 				</div>
 				<div class="brief panel-footer">
 					<div class="input-group">
 						<span class="input-group-addon">附件描述：</span>
-						<textarea class="form-control" v-model="brief[index]"></textarea>
+						<textarea :disabled="disabled" class="form-control" v-model="brief[index]"></textarea>
 					</div>
 				</div>
 			</div>
@@ -82,6 +82,7 @@
 				type: Boolean,
 				default: false
 			}
+			, disabled: ''
 		}
 		, methods: {
 			removeItem: function(id, index){

@@ -245,6 +245,7 @@ var vm = new Vue({
 	events: {
 		'vuetable:action': function(action, data) {
 			if (action == 'edit-item') {
+				console.log(data)
 				this.openCreateUrl(data.id)
 			} else if (action == 'delete-item') {
 				this.deleteCourse(data)
