@@ -1,6 +1,10 @@
 <style lang="less">
 	.component-courselist-create-box{
 		.ovh;
+
+		.line_tool_box{
+			border-bottom: 1px solid #666;.pb(20px);.mb(20px);
+		}
 	}
 </style>
 
@@ -18,9 +22,10 @@
 			type="textarea"
 		></bs-input>
 
-		<div class="tool_box">
+		<div class="line_tool_box">
 			<div v-if="id" class="btn btn-primary" @click="saveCourse">保存最新课程</div>
 			<div v-else class="btn btn-primary" @click="saveCourse">创建最新课程</div>
+			<div v-if="id" class="btn btn-primary" @click="deleteCourse">删除最新课程</div>
 		</div>
 	</div>
 </template>
@@ -60,6 +65,20 @@
 						sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
 							window.location.reload()
 						})
+					}
+				}, 'json')
+			},
+
+			deleteCourse: function(){
+				var mSelf = this
+
+				$.get('/aj/api/courselist/delete', { id: mSelf.id }, function(res){
+					if(res.status_code == 200){
+						sweetAlert({title: '删除成功'}, function(){
+							mSelf.$dispatch('deleteCourse', mSelf.course)
+						})
+					} else {
+						sweetAlert('删除失败', res.message, 'error')
 					}
 				}, 'json')
 			}

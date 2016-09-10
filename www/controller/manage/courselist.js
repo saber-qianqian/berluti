@@ -23,7 +23,7 @@ var controlFns = {
 		this.listenOver(function(data) {
 
 			data.pagerooter = 'course.courselist'
-			data._CSSLinks = ['app', 'page/chapter/create'];
+			data._CSSLinks = ['app', 'page/chapter/create', 'page/lesson/create', 'page/courselist/create'];
 
 			this.render('page/banner/create.html', data);
 		});

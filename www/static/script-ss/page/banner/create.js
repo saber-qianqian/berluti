@@ -49,6 +49,11 @@ var vm = new Vue({
 			})
 		}
 	},
+	events: {
+		'deleteCourse': function(course){
+			this.courselist.$remove(course)
+		}
+	},
 	ready: function(){
 		this.getData()
 	}

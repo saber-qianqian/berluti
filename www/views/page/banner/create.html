@@ -12,18 +12,19 @@
 
 		<div class="content">
 			<div class="table_name">最新课程管理</div>
-			<div class="content">
+			<div class="content_box">
 				<courselist-create v-for="course in courselist" :course.sync="course"></courselist-create>
 
 				<div class="tool_box">
 					<div class="btn btn-primary" @click="addCourse">添加最新课程</div>
 				</div>
-
-				<div class="tool_box">
-					<div class="btn btn-primary">预览效果</div>
+			</div>
+			<div class="preview_box">
+				<div class="box_title">最新课程预览</div>
+				<div class="inner">
+					<preview-courselist v-for="course in courselist" :course.sync="course"></preview-courselist>
 				</div>
 			</div>
-			<preview-courselist v-for="course in courselist" :course="course"></preview-courselist>
 		</div>
 	</div>
 </div>

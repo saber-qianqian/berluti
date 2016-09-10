@@ -1,6 +1,15 @@
 <style lang="less">
 	.component-preview-courselist-box{
-		.ovh;
+		.ovh;.mt(20px);
+
+		img{ .w(100%);.mb(5px); }
+		.title{ .f(24px);.fb;.fc(#666); }
+		.desc{
+			.f(16px);.fc(#999);
+
+			span{ .pl(20px); }
+		}
+
 	}
 </style>
 
