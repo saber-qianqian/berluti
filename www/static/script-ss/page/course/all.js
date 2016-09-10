@@ -128,7 +128,7 @@ var vm = new Vue({
 		 * Callback functions
 		 */
 		openChild: function(id){
-			return '<a target="_blank" href="/manage/lesson/list/main?course_id=' + id + '"><button class="btn btn-info">查看课时</button><a><a target="_blank" href="/manage/practice/list/main?course_id=' + id + '"><button class="btn btn-info">查看作业</button><a>'
+			return '<a target="_blank" href="/manage/lesson/list/main?course_id=' + id + '"><button class="btn btn-info">查看章节</button><a><a target="_blank" href="/manage/practice/list/main?course_id=' + id + '"><button class="btn btn-info">查看作业</button><a>'
 		},
 		allCap: function(value) {
 			return value.toUpperCase()
