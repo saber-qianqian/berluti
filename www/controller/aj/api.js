@@ -60,6 +60,7 @@ var controlFns = {
 			'update': '/api/courseware/update'
 			, 'delete': '/api/courseware/delete'
 			, 'show': '/api/courseware/show'
+			, 'preview': '/api/courseware/preview'
 		}
 
 		this.ajaxTo(php[params])

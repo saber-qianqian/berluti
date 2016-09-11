@@ -49,6 +49,10 @@
 			</vuetable>
 		</div>
 	</div>
+
+	<aside :show.sync="preview_show" placement="right" header="课程资料预览" :width="800">
+		<preview-course :courseid="preview_id"></preview-course>
+	</aside>
 </div>
 
 <%== loader.loadJS(['page/courseware/list']); %>
