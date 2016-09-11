@@ -32,7 +32,7 @@
 				<source :src="url"/>
 			</audio>
 
-			<div class="brief panel-footer">
+			<div class="brief panel-footer" v-if="showbiref">
 				<div class="input-group">
 					<span class="input-group-addon">附件描述：</span>
 					<textarea :disabled="disabled" class="form-control" v-model="brief"></textarea>
@@ -58,6 +58,10 @@
 			}
 			, name: ''
 			, disabled: ''
+			, showbiref: {
+				type: Boolean
+				, default: true
+			}
 		}
 		, methods: {
 			initAudio: function(){

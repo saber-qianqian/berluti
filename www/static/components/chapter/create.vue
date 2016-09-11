@@ -21,12 +21,18 @@
 			<upload-audio class="form-group" :brief.sync="audio_brief" :value.sync="audio_new" :name="audio_name" :url="audio_url" label="上传音频" :disabled="!!audio_url"></upload-audio>
 		</div>
 		<div class="line_tool_box">
+			<div v-if="id" class="btn btn-info" @click="previewChapter"><span class="glyphicon glyphicon-zoom-in"></span> 预览小节</div>
+
 			<div v-if="id" class="btn btn-primary" @click="saveCreate">保存小节</div>
 			<div v-else class="btn btn-primary" @click="saveCreate">创建小节</div>
 
 			<div v-if="id" class="btn btn-warning" @click="deleteItem">删除小节</div>
 			<div v-if="id" class="btn btn-primary" @click="saveCreate">管理已添加的附件</div>
 		</div>
+
+		<aside :show.sync="preview_show" placement="right" :header="getChapterIndex(chapterindex+1) + ':' + formdata.name" :width="800">
+			<preview-chapter :chapterid="id"></preview-chapter>
+		</aside>
 	</div>
 </template>
 
@@ -43,7 +49,10 @@
 		components : {
 			bsInput: bs.input,
 			uploadTime: require('uploadtime.vue'),
-			uploadAudio: require('uploadaudio.vue')
+			uploadAudio: require('uploadaudio.vue'),
+
+			previewChapter: require('preview/chapter.vue'),
+			aside: bs.aside
 		}
 		, props : ['chapterindex', 'chapterdata']
 		, data : function(){
@@ -67,6 +76,8 @@
 				, old_images_courseware: []
 				, audio_url: ''
 				, id: ''
+
+				, preview_show: false
 			}
 		}
 		, methods : {
@@ -97,7 +108,7 @@
 				$.post(url, formdata, function(res) {
 					if(res.status_code == 200){
 						sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
-							mSelf.id = res.data
+							mSelf.id = res.data.id
 						})
 					}
 				}, 'json')
@@ -128,6 +139,11 @@
 				}
 
 				return '第' + outOrder + '节'
+			}
+
+			, previewChapter: function(){
+				this.preview_show = true
+				this.$broadcast('previewShow', this.id)
 			}
 		}
 		, created: function(){

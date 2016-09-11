@@ -13,9 +13,7 @@ var vm = new Vue({
 		breadcrumb: require('core/www/breadcrumb.vue'),
 		chapterCreate: require('chapter/create.vue'),
 
-		bsInput: bs.input,
-		aside: bs.aside,
-		previewCourse: require('preview/course.vue')
+		bsInput: bs.input
 	},
 	data: function(){
 		return{
@@ -28,8 +26,6 @@ var vm = new Vue({
 
 			, chapterList: []
 			, course_id: urlParams.course_id || ''
-
-			, preview_show: false
 		}
 	},
 	events: {
@@ -106,10 +102,6 @@ var vm = new Vue({
 					}
 				})
 			}
-		}
-
-		, preview: function(){
-			this.preview_show = true
 		}
 	},
 	ready: function(){

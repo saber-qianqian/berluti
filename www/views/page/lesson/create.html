@@ -40,15 +40,10 @@
 			></chapter-create>
 
 			<div class="tool_box">
-				<div class="btn btn-primary" @click="preview">预览效果</div>
 				<div class="btn btn-primary" @click="addChpter">添加小节</div>
 			</div>
 		</div>
 	</div>
-
-	<aside :show.sync="preview_show" placement="right" header="课程详情预览" :width="800">
-		<preview-course :courseid="course_id"></preview-course>
-	</aside>
 </div>
 
 <%== loader.loadJS(['page/lesson/create']); %>
