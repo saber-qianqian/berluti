@@ -64,6 +64,9 @@ var vm = new Vue({
 				}
 			}, 'json')
 		}
+		, previewPage: function(){
+			window.open('/manage/page/preview/main?id=' + this.id)
+		}
 	},
 	ready: function(){
 		if(this.id) this.getData()

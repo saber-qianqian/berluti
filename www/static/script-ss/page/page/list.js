@@ -224,10 +224,16 @@ var vm = new Vue({
 				}
 			}, 'json')
 		}
+
+		, previewPage: function(id){
+			window.open('/manage/page/preview/main?id=' + id)
+		}
 	},
 	events: {
 		'vuetable:action': function(action, data) {
-			if (action == 'edit-item') {
+			if(action == 'view-item'){
+				this.previewPage(data.id)
+			} else if (action == 'edit-item') {
 				this.openCreateUrl(data.id)
 			} else if (action == 'delete-item') {
 				this.deleteCourse(data)

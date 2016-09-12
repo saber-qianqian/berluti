@@ -28,7 +28,7 @@
 				></bs-input>
 			</div>
 			<div class="tool_box">
-				<div class="btn btn-primary">预览效果</div>
+				<div class="btn btn-primary" @click="previewPage">预览效果</div>
 				<div v-if="id" class="btn btn-primary" @click="saveCourse">保存内容</div>
 				<div v-else class="btn btn-primary" @click="saveCourse">创建内容</div>
 				<div v-else class="btn btn-primary">发布内容</div>
