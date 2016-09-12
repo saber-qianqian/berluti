@@ -281,7 +281,7 @@
   }
 
   function isWX() {
-    return navigator.userAgent.indexOf('HIGO') > 0 || navigator.userAgent.indexOf('MicroMessenger') > 0
+    return navigator.userAgent.indexOf('MicroMessenger') > 0
   }
   /**
    * Array type check.
