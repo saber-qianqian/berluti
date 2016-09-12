@@ -73,6 +73,8 @@ var vm = new Vue({
 							, status: 1
 						})
 					})
+
+					mSelf.course_id = resData.course_id
 				} else {
 					mSelf.id = ''
 				}
