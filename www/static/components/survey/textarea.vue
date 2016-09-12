@@ -13,7 +13,8 @@
 		<bs-input
 			:label="'Q' + componentindex"
 			:value.sync="componentdata.name"
-			help="拖拽（默认0-100）"
+			help="输入框"
+			required
 		></bs-input>
 		<div class="ans_item" v-for="item in componentdata.answer" track-by="$index">
 			<div class="input-group">

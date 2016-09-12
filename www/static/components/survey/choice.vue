@@ -14,11 +14,12 @@
 			:label="'Q' + componentindex"
 			:value.sync="componentdata.name"
 			help="单选（默认四个）"
+			required
 		></bs-input>
 		<div class="ans_item" v-for="item in componentdata.answer" track-by="$index">
 			<div class="input-group">
 				<span class="input-group-addon">答案{{ $index + 1 }}</span>
-				<input type="text" class="form-control" v-model="item">
+				<input type="text" class="form-control" v-model="item" required>
 				<div class="input-group-addon" @click="removeItem($index)">
 					<i class="glyphicon glyphicon-remove-sign"></i>
 				</div>

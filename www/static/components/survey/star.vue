@@ -14,6 +14,7 @@
 			:label="'Q' + componentindex"
 			:value.sync="componentdata.name"
 			help="五星（默认四个）"
+			required
 		></bs-input>
 		<div class="ans_item" v-for="item in componentdata.answer" track-by="$index">
 			<div class="input-group">

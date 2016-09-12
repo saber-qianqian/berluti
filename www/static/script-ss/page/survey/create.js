@@ -42,24 +42,29 @@ var vm = new Vue({
 		saveCourse: function() {
 			var mSelf = this
 
-			if(this.formdata.name){
-				var formdata = JSON.parse(JSON.stringify(this.formdata))
-				formdata.content = JSON.stringify(mSelf.content)
-				var url = api.create
+			if(!this.formdata.name) return sweetAlert({ title: '标题不能为空', type: 'warning' })
+			if(!this.formdata.description) return sweetAlert({ title: '描述不能为空', type: 'warning' })
 
-				if(this.id){
-					formdata.id = this.id
-					url = api.update
-				}
-
-				$.post(url, formdata, function(res) {
-					if(res.status_code == 200){
-						sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
-							window.location.reload()
-						})
-					}
-				}, 'json')
+			for(var i in mSelf.content){
+				if(/\"\"|null/.test(JSON.stringify(mSelf.content[i]))) return sweetAlert({ title: 'Q' + (+i+1) +' 内容不全，请补充完整', type: 'warning'})
 			}
+
+			var formdata = JSON.parse(JSON.stringify(this.formdata))
+			formdata.content = JSON.stringify(mSelf.content)
+			var url = api.create
+
+			if(this.id){
+				formdata.id = this.id
+				url = api.update
+			}
+
+			$.post(url, formdata, function(res) {
+				if(res.status_code == 200){
+					sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
+						window.location.reload()
+					})
+				}
+			}, 'json')
 		}
 		, getData: function(){
 			var mSelf = this
