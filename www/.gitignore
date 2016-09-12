@@ -1,0 +1,10 @@
+.*/*
+<<<<<<< HEAD
+static/config.json
+static/css/*
+static/script-min/*
+=======
+/static/config.json
+/static/script-min/*
+/static/css/*
+>>>>>>> a81fa24d43cb5ee3b504e651146eaac92c39d65c
