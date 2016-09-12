@@ -14,10 +14,6 @@ var api = {
 
 // fields definition
 var tableColumns = [{
-	name: '__checkbox:id',
-	titleClass: 'text-center',
-	dataClass: 'text-center',
-}, {
 	name: 'user_id',
 	title: '用户ID'
 }, {
@@ -29,13 +25,6 @@ var tableColumns = [{
 }, {
 	name: 'created_at',
 	title: '操作时间'
-}, {
-	name: 'status',
-	title: '状态'
-}, {
-	name: '__actions',
-	title: '操作',
-	dataClass: 'text-center',
 }]
 
 var selectedProps = ''
@@ -58,17 +47,6 @@ var vm = new Vue({
 		searchFor: '',
 		fields: tableColumns,
 		paginationComponent: 'vuetable-pagination',
-		itemActions: [{
-			name: 'delete-item',
-			label: '删除',
-			icon: 'glyphicon glyphicon-remove',
-			class: 'btn btn-danger',
-			extra: {
-				title: 'Delete',
-				'data-toggle': "tooltip",
-				'data-placement': "right"
-			}
-		}],
 		moreParams: [],
 		selectedProps: selectedProps,
 		selectedRows: []
@@ -119,80 +97,9 @@ var vm = new Vue({
 					dropdownClass: 'form-control'
 				})
 			}
-		},
-
-		selectedAll: function() {
-			var _vuetable = this.$refs.vuetable
-			var selectedProps = this.selectedProps
-
-			this.selectedRows = []
-
-			for (var index in _vuetable.tableData) {
-				this.selectedRows.push(_vuetable.tableData[index][selectedProps])
-			}
-		},
-		selectedInvert: function() {
-			var _vuetable = this.$refs.vuetable
-			var selectedProps = this.selectedProps
-			var _oldSelectedTo = JSON.parse(JSON.stringify(this.selectedRows))
-
-			this.selectedRows = []
-
-			for (var index in _vuetable.tableData) {
-				if ($.inArray(_vuetable.tableData[index][selectedProps], _oldSelectedTo) == -1)
-					this.selectedRows.push(_vuetable.tableData[index][selectedProps])
-			}
-		},
-
-		removeDataByIds: function(){
-			var mSelf = this
-
-			var ids = mSelf.selectedRows
-			if(ids.length){
-				$.get(api.delete, { id: ids.join(',') }, function(res){
-					if(res.status_code == 200){
-						sweetAlert({title: '删除成功'}, function(){
-							var deleteData = []
-
-							$.each(ids, function(i, id){
-								$.each(mSelf.$refs.vuetable.tableData, function(i, data){
-									if(data.id == id){
-										deleteData.push(data)
-									}
-								})
-							})
-
-							mSelf.selectedRows = []
-							for(var i in deleteData){
-								mSelf.$refs.vuetable.tableData.$remove(deleteData[i])
-							}
-						})
-					} else {
-						sweetAlert('删除失败', res.message, 'error')
-					}
-				}, 'json')
-			}
-		},
-		deleteCourse: function(data){
-			var mSelf = this
-
-			$.get(api.delete, { id: data.id }, function(res){
-				if(res.status_code == 200){
-					sweetAlert({title: '删除成功'}, function(){
-						mSelf.$refs.vuetable.tableData.$remove(data)
-					})
-				} else {
-					sweetAlert('删除失败', res.message, 'error')
-				}
-			}, 'json')
 		}
 	},
 	events: {
-		'vuetable:action': function(action, data) {
-			if (action == 'delete-item') {
-				this.deleteCourse(data)
-			}
-		},
 		'vuetable:load-error': function(response) {
 			if (response.status == 400) {
 				sweetAlert('Something\'s Wrong!', response.data.message, 'error')
