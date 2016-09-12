@@ -24,9 +24,6 @@ var tableColumns = [{
 	name: 'name',
 	title: '标题'
 }, {
-	name: 'course_id',
-	title: '所属课程'
-}, {
 	name: 'creator',
 	title: '创建者'
 }, {
@@ -41,11 +38,6 @@ var tableColumns = [{
 }, {
 	name: 'status',
 	title: '状态'
-}, {
-	name: 'id',
-	title: '子集',
-	callback: 'openChild',
-	dataClass: 'text-center'
 }, {
 	name: '__actions',
 	title: '操作',
