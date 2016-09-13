@@ -16,7 +16,10 @@ var vm = new Vue({
 
 		bsInput: bs.input,
 		datepicker: require('datepicker.vue'),
-		uploadImage: require('upload.vue')
+		uploadImage: require('upload.vue'),
+
+		aside: bs.aside,
+		previewCourse: require('preview/course.vue')
 	},
 	data: function(){
 		return {
@@ -42,6 +45,8 @@ var vm = new Vue({
 			}
 			, id: ''
 			, cover_uirl: ''
+
+			, preview_show: false
 		}
 	},
 	watch: {
@@ -104,6 +109,10 @@ var vm = new Vue({
 					}
 				}, 'json')
 			}
+		}
+
+		, previewCourse: function(){
+			this.preview_show = true
 		}
 	}
 	, created: function(){

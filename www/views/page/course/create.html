@@ -35,13 +35,17 @@
 				<% }); %>
 			</div>
 			<div class="tool_box">
-				<div class="btn btn-primary">预览效果</div>
+				<div v-if="id" class="btn btn-primary" @click="previewCourse">预览效果</div>
 				<div v-if="id" class="btn btn-primary" @click="saveCourse">保存课程</div>
 				<div v-else class="btn btn-primary" @click="saveCourse">创建课程</div>
-				<div class="btn btn-primary">发布课程</div>
+				<div v-if="id" class="btn btn-primary">发布课程</div>
 			</div>
 		</div>
 	</div>
+
+	<aside :show.sync="preview_show" placement="right" header="课程详情预览" :width="800">
+		<preview-course :courseid="id" :coursedata="formdata"></preview-course>
+	</aside>
 </div>
 
 <%== loader.loadJS(['page/course/create']); %>

@@ -83,7 +83,7 @@
 	require('core/open/sweet/alert')
 
 	return {
-		props : ['courseid']
+		props : [ 'courseid', 'coursedata' ]
 		, data: function(){
 			return {
 				detail: {}
@@ -103,7 +103,7 @@
 
 				$.get(url, { id: id }, function(res){
 					if(res.status_code == 200){
-						mSelf.$set('detail', res.data)
+						mSelf.$set('detail.directory', res.data.directory)
 					} else {
 						sweetAlert({ title: '获取详情失败', type: 'error' })
 					}
@@ -125,6 +125,9 @@
 			}
 		}
 		, ready: function(){
+			if(this.coursedata){
+				this.detail = this.coursedata
+			}
 			if(this.courseid){
 				this.getCourseDetail(this.courseid)
 			}
