@@ -52,13 +52,17 @@ for (var index in tableColumns) {
 	}
 }
 
+var bs = require('core/open/strap/base').VueStrap
 var vm = new Vue({
 	el: '.main',
 	components: {
 		cmsHeader: require('core/www/header.vue'),
 		cmsNav: require('core/www/nav.vue'),
 		breadcrumb: require('core/www/breadcrumb.vue'),
-		cmsTable: require('core/www/expect.vue')
+		cmsTable: require('core/www/expect.vue'),
+
+		aside: bs.aside,
+		previewSurvey: require('preview/survey.vue')
 	},
 	data: {
 		searchFor: '',
@@ -97,7 +101,9 @@ var vm = new Vue({
 		}],
 		moreParams: [],
 		selectedProps: selectedProps,
-		selectedRows: []
+		selectedRows: [],
+
+		preview_show: false
 	},
 	watch: {
 		'perPage': function(val, oldVal) {
@@ -219,6 +225,11 @@ var vm = new Vue({
 					sweetAlert('删除失败', res.message, 'error')
 				}
 			}, 'json')
+		},
+
+		previewCourse: function(id){
+			this.preview_show = true
+			this.$broadcast('previewShow', id)
 		}
 	},
 	events: {
@@ -227,6 +238,8 @@ var vm = new Vue({
 				this.openCreateUrl(data.id)
 			} else if (action == 'delete-item') {
 				this.deleteCourse(data)
+			} else {
+				this.previewCourse(data.id)
 			}
 		},
 		'vuetable:load-error': function(response) {

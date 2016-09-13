@@ -50,6 +50,10 @@
 			</vuetable>
 		</div>
 	</div>
+
+	<aside :show.sync="preview_show" placement="right" header="调查问卷预览" :width="800">
+		<preview-survey></preview-survey>
+	</aside>
 </div>
 
 <%== loader.loadJS(['page/survey/list']); %>

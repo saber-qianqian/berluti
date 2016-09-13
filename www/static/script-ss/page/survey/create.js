@@ -26,7 +26,10 @@ var vm = new Vue({
 		star: require('survey/star.vue'),
 		drag: require('survey/drag.vue'),
 		surveyInput: require('survey/input.vue'),
-		surveyTextarea: require('survey/textarea.vue')
+		surveyTextarea: require('survey/textarea.vue'),
+
+		aside: bs.aside,
+		previewSurvey: require('preview/survey.vue')
 	},
 	data: function(){
 		return{
@@ -36,6 +39,8 @@ var vm = new Vue({
 			}
 			, content: []
 			, id: urlParams.id
+
+			, preview_show: false
 		}
 	},
 	methods: {
@@ -87,6 +92,10 @@ var vm = new Vue({
 				, name: ''
 				, answer: []
 			})
+		}
+
+		, previewSurvey: function(){
+			this.preview_show = true
 		}
 	},
 	ready: function(){

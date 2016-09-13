@@ -21,6 +21,7 @@
 				></bs-input>
 				<bs-input
 					label="描述"
+					type="textarea"
 					:value.sync="formdata.description"
 					required
 				></bs-input>
@@ -70,12 +71,16 @@
 				</div>
 			</div>
 			<div class="tool_box">
-				<div class="btn btn-primary">预览效果</div>
+				<div class="btn btn-primary" @click="previewSurvey">预览效果</div>
 				<div v-if="id" class="btn btn-primary" @click="saveCourse">保存问卷</div>
 				<div v-else class="btn btn-primary" @click="saveCourse">创建问卷</div>
 			</div>
 		</div>
 	</div>
+
+	<aside :show.sync="preview_show" placement="right" header="调查问卷预览" :width="800">
+		<preview-survey :detail="formdata" :content="content"></preview-survey>
+	</aside>
 </div>
 
 <%== loader.loadJS(['page/survey/create']); %>
