@@ -10,7 +10,7 @@
 	<div class="header-box">
 		<div class="avatar" :style="{ 'background-image': 'url(' + userinfo.avatar.image_poster + ')' }"></div>
 		<div class="say_hi">{{ '身份' }}：{{ userinfo.nick_name }} 你好，欢迎回来！</div>
-		<a href="/manage/user/login/">退出</a>
+		<a href="/manage/user/logout/">退出</a>
 	</div>
 </template>
 
