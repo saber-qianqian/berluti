@@ -27,7 +27,7 @@
 			<div v-else class="btn btn-primary" @click="saveCreate">创建小节</div>
 
 			<div v-if="id" class="btn btn-warning" @click="deleteItem">删除小节</div>
-			<div v-if="id" class="btn btn-primary" @click="saveCreate">管理已添加的附件</div>
+			<div v-if="id" class="btn btn-primary" @click="openCourseWare">管理已添加的附件</div>
 		</div>
 
 		<aside :show.sync="preview_show" placement="right" :header="getChapterIndex(chapterindex+1) + ':' + formdata.name" :width="800">
@@ -54,7 +54,7 @@
 			previewChapter: require('preview/chapter.vue'),
 			aside: bs.aside
 		}
-		, props : ['chapterindex', 'chapterdata']
+		, props : ['chapterindex', 'chapterdata', 'courseid']
 		, data : function(){
 			return {
 				formdata: {
@@ -81,7 +81,10 @@
 			}
 		}
 		, methods : {
-			saveCreate: function(){
+			openCourseWare: function(){
+				window.location.href = '/manage/courseware/list/main?course_id=' + this.courseid
+			}
+			, saveCreate: function(){
 				var mSelf = this
 
 				var formdata = JSON.parse(JSON.stringify(mSelf.formdata))
@@ -99,16 +102,24 @@
 					}
 				}
 				formdata.images = images.join(',')
+				if(!formdata.images) delete formdata.images
 
 
-				if(!mSelf.audio_courseware){
-					formdata.audio = mSelf.audio_new + '::' + mSelf.audio_brief
+				if(mSelf.audio_new){
+					if(!mSelf.audio_courseware){
+						formdata.audio = mSelf.audio_new + '::' + mSelf.audio_brief
+					}
+				} else {
+					delete formdata.audio
 				}
 
 				$.post(url, formdata, function(res) {
 					if(res.status_code == 200){
 						sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
-							mSelf.id = res.data.id
+							if(!mSelf.id){
+								mSelf.id = res.data
+								mSelf.chapterdata.status = 1
+							}
 						})
 					}
 				}, 'json')
