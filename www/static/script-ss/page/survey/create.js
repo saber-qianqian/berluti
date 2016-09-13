@@ -93,6 +93,24 @@ var vm = new Vue({
 				, answer: []
 			})
 		}
+		, deleteItem: function(index){
+			var mSelf = this
+
+			sweetAlert({
+				title: "确认删除问题么？",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "删除",
+				cancelButtonText: "取消",
+				closeOnConfirm: true,
+				closeOnCancel: true
+			}, function(isConfirm) {
+				if (isConfirm) {
+					mSelf.content.splice(index, 1)
+				}
+			})
+		}
 
 		, previewSurvey: function(){
 			this.preview_show = true

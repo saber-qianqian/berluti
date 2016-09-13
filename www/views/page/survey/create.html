@@ -46,7 +46,11 @@
 
 				<div class="list_box panel panel-default" v-show="content.length">
 					<div class="panel-body">
-						<component v-for="item in content" :is="item.type" :componentdata="item" :componentindex="$index + 1"></component>
+						<component v-for="item in content" :is="item.type" :componentdata="item" :componentindex="$index + 1">
+							<div style="margin-top: 10px">
+								<div @click="deleteItem($index)" class="add_btn btn btn-danger" @click="addItem"><span class="glyphicon glyphicon-remove"></span> 删除问题</div>
+							</div>
+						</component>
 					</div>
 				</div>
 

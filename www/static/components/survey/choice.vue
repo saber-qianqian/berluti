@@ -26,6 +26,7 @@
 			</div>
 		</div>
 		<button class="add_btn btn btn-default" @click="addItem"><span class="glyphicon glyphicon-plus"></span> 添加选项</button>
+		<slot></slot>
 	</div>
 </template>
 

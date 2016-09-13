@@ -22,6 +22,7 @@
 				<input type="text" class="form-control" v-model="item" disabled>
 			</div>
 		</div>
+		<slot></slot>
 	</div>
 </template>
 
