@@ -24,6 +24,8 @@ var vm = new Vue({
 			}
 			, id: urlParams.id || ''
 
+			, urlParamsid: !!urlParams.id
+
 			, chapterList: []
 			, course_id: urlParams.course_id || ''
 		}
@@ -31,6 +33,16 @@ var vm = new Vue({
 	events: {
 		'deleteChapter': function(index){
 			this.chapterList.splice(index, 1)
+		}
+	},
+	watch: {
+		'formdata.course_id': function(val){
+			if(val === '0'){
+				this.formdata.course_id = ''
+
+				this.course_id = this.formdata.course_id
+				sweetAlert({ title: '所属课程编号错误', type: 'error' })
+			}
 		}
 	},
 	methods: {
@@ -86,7 +98,7 @@ var vm = new Vue({
 
 			$.each(mSelf.chapterList, function(i, chapter){
 				if(chapter.status == 0){
-					sweetAlert({ title: '请先保存上一个小节', type: 'warning' })
+					sweetAlert({ title: '请先完善上一个小节的创建，点击【创建小节】按钮', type: 'warning' })
 					go = false
 				}
 			})

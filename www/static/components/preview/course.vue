@@ -80,6 +80,8 @@
 </template>
 
 <script>
+	require('core/open/sweet/alert')
+
 	return {
 		props : ['courseid']
 		, data: function(){
@@ -102,6 +104,8 @@
 				$.get(url, { id: id }, function(res){
 					if(res.status_code == 200){
 						mSelf.$set('detail', res.data)
+					} else {
+						sweetAlert({ title: '获取详情失败', type: 'error' })
 					}
 				}, 'json')
 			},
