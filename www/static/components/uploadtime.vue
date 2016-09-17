@@ -31,14 +31,14 @@
 				<div class="time panel-footer">
 					<div class="input-group">
 						<span class="input-group-addon">设置图片出现时间：</span>
-						<input :disabled="disabled" type="number" class="form-control" v-model="time[index]" @change="changeTime(value[index], index)">
+						<input :disabled="disableds[index]" type="number" class="form-control" v-model="time[index]" @change="changeTime(value[index], index)">
 						<span class="input-group-addon">s</span>
 					</div>
 				</div>
 				<div class="brief panel-footer">
 					<div class="input-group">
 						<span class="input-group-addon">附件描述：</span>
-						<textarea :disabled="disabled" class="form-control" v-model="brief[index]"></textarea>
+						<textarea :disabled="disableds[index]" class="form-control" v-model="brief[index]"></textarea>
 					</div>
 				</div>
 			</div>
@@ -61,6 +61,12 @@
 				}
 			}
 			, urls: {
+				type: Array,
+				default: function(){
+					return []
+				}
+			}
+			, disableds: {
 				type: Array,
 				default: function(){
 					return []
@@ -92,7 +98,8 @@
 				this.urls.splice(index, 1)
 				this.time.splice(index, 1)
 				this.brief.splice(index, 1)
-				this.images.splice(index, 1)
+				this.disableds.splice(index, 1)
+				this.value.splice(index, 1)
 			}
 			, changeTime: function(courseware_id, index){
 				this.$dispatch('changeTime', courseware_id, index)

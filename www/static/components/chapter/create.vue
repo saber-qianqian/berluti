@@ -17,7 +17,7 @@
 				:value.sync="formdata.brief"
 				type="textarea"
 			></bs-input>
-			<upload-time class="form-group" :multi="true" :value.sync="images" :time.sync="times" :brief.sync="time_briefs" :urls="image_urls" label="上传图片" :disabled="true"></upload-time>
+			<upload-time class="form-group" :multi="true" :value.sync="images" :time.sync="times" :brief.sync="time_briefs" :urls="image_urls" label="上传图片" :disableds="disableds"></upload-time>
 			<upload-audio class="form-group" :brief.sync="audio_brief" :value.sync="audio_new" :name="audio_name" :url="audio_url" label="上传音频" :disabled="!!audio_url"></upload-audio>
 		</div>
 		<div class="line_tool_box">
@@ -69,6 +69,7 @@
 				, audio_brief: ''
 				, images: []
 				, times: []
+				, disableds: []
 				, time_briefs: []
 				, image_urls: []
 				, images_courseware: []
@@ -180,12 +181,24 @@
 					mSelf.image_urls.push(courseware.url)
 					mSelf.images.push(courseware.id)
 					mSelf.old_images_courseware.push(courseware.id)
-					mSelf.times.push(courseware.epoch)
-					mSelf.time_briefs.push(courseware.brief)
+					mSelf.times.push(courseware.epoch || 0)
+					mSelf.disableds.push(true)
+					mSelf.time_briefs.push(courseware.brief || '')
 					mSelf.images_entity[courseware.id] = courseware.entity
 				}
 			})
 
+		}
+		, events: {
+			'deleteTime': function(id){
+				$.get('/aj/api/courseware/delete', { id: id }, function(res){
+					if(res.status_code == 200){
+						sweetAlert({ title: '删除成功' }, function(){})
+					} else {
+						sweetAlert('删除失败', res.message, 'error')
+					}
+				}, 'json')
+			}
 		}
 		, ready: function(){}
 	}
