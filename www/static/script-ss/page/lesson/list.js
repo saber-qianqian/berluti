@@ -72,16 +72,6 @@ var vm = new Vue({
 		fields: tableColumns,
 		paginationComponent: 'vuetable-pagination',
 		itemActions: [{
-			name: 'view-item',
-			label: '预览',
-			icon: 'glyphicon glyphicon-zoom-in',
-			class: 'btn btn-info',
-			extra: {
-				'title': 'View',
-				'data-toggle': "tooltip",
-				'data-placement': "left"
-			}
-		}, {
 			name: 'edit-item',
 			label: '编辑',
 			icon: 'glyphicon glyphicon-pencil',
