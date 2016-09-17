@@ -37,7 +37,7 @@ var controlFns = {
 				com_type: 'bs-input',
 				value: "formdata.name",
 				label: "课程名称",
-				help: "中文简体，不许说脏字",
+				help: "不能为空",
 				required: true,
 				icon: true,
 				type: "text"
