@@ -92,23 +92,25 @@ var vm = new Vue({
 		, saveCourse: function() {
 			var mSelf = this
 
-			if(this.formdata.name){
-				var formdata = JSON.parse(JSON.stringify(this.formdata))
-				var url = '/aj/api/course/create'
-
-				if(this.id){
-					formdata.id = this.id
-					url = '/aj/api/course/update'
-				}
-
-				$.post(url, formdata, function(res) {
-					if(res.status_code == 200){
-						sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
-							window.location.reload()
-						})
-					}
-				}, 'json')
+			for(var key in mSelf.formdata){
+				if(mSelf.formdata[key] == '') return sweetAlert({ title: '表单不完整，有为空选项', type: 'warning' })
 			}
+
+			var formdata = JSON.parse(JSON.stringify(this.formdata))
+			var url = '/aj/api/course/create'
+
+			if(this.id){
+				formdata.id = this.id
+				url = '/aj/api/course/update'
+			}
+
+			$.post(url, formdata, function(res) {
+				if(res.status_code == 200){
+					sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
+						window.location.reload()
+					})
+				}
+			}, 'json')
 		}
 
 		, previewCourse: function(){
