@@ -73,6 +73,7 @@ var vm = new Vue({
 					mSelf.entity_type = resData.entity_type
 					mSelf.epoch.push(resData.epoch || 0)
 					mSelf.url.push(resData.entity.url)
+					mSelf.brief.push(resData.brief)
 				}
 			}, 'json')
 		}
