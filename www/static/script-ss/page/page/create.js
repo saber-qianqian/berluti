@@ -35,6 +35,10 @@ var vm = new Vue({
 		saveCourse: function(showAlert) {
 			var mSelf = this
 
+			if(!mSelf.formdata.name) return sweetAlert({ title: '标题不能为空', type: 'warning' })
+			if(!mSelf.formdata.category) return sweetAlert({ title: '简介不能为空', type: 'warning' })
+			if(!mSelf.formdata.content) return sweetAlert({ title: '发布内容不能为空', type: 'warning' })
+
 			var formdata = JSON.parse(JSON.stringify(this.formdata))
 			var url = api.create
 
