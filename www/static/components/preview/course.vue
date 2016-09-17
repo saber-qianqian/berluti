@@ -83,7 +83,7 @@
 	require('core/open/sweet/alert')
 
 	return {
-		props : [ 'courseid', 'coursedata' ]
+		props : [ 'courseid', 'coursedata', 'list' ]
 		, data: function(){
 			return {
 				detail: {}
@@ -103,7 +103,11 @@
 
 				$.get(url, { id: id }, function(res){
 					if(res.status_code == 200){
-						mSelf.$set('detail.directory', res.data.directory)
+						if(mSelf.list){
+							mSelf.$set('detail', res.data)
+						} else {
+							mSelf.$set('detail.directory', res.data.directory)
+						}
 					} else {
 						sweetAlert({ title: '获取详情失败', type: 'error' })
 					}
