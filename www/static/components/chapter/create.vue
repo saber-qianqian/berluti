@@ -87,6 +87,9 @@
 			, saveCreate: function(){
 				var mSelf = this
 
+				if(!mSelf.formdata.name) return sweetAlert({ title: '小节名不能为空', type: 'warning'})
+				if(!mSelf.formdata.brief) return sweetAlert({ title: '小节简介不能为空', type: 'warning'})
+
 				var formdata = JSON.parse(JSON.stringify(mSelf.formdata))
 				var url = api.create
 

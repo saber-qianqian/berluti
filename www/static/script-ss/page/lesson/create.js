@@ -49,6 +49,10 @@ var vm = new Vue({
 		saveCourse: function() {
 			var mSelf = this
 
+			if(!this.formdata.course_id) return sweetAlert({ title: '所属课程不能为空', type: 'warning'})
+			if(!this.formdata.name) return sweetAlert({ title: '章节名不能为空', type: 'warning'})
+			if(!this.formdata.brief) return sweetAlert({ title: '章节简介不能为空', type: 'warning'})
+
 			if(this.formdata.name){
 				var formdata = JSON.parse(JSON.stringify(this.formdata))
 				var url = '/aj/api/lesson/create'
