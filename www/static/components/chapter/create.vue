@@ -24,7 +24,7 @@
 			<div v-if="id" class="btn btn-info" @click="previewChapter"><span class="glyphicon glyphicon-zoom-in"></span> 预览小节</div>
 
 			<div v-if="id" class="btn btn-primary" @click="saveCreate">保存小节</div>
-			<div v-else class="btn btn-primary" @click="saveCreate">创建小节</div>
+			<div v-else class="btn btn-primary" @click="saveCreate">保存小节</div>
 
 			<div v-if="id" class="btn btn-warning" @click="deleteItem">删除小节</div>
 			<div v-if="id" class="btn btn-primary" @click="openCourseWare">管理已添加的附件</div>
