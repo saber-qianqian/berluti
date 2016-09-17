@@ -251,6 +251,9 @@ var vm = new Vue({
 			} else {
 				sweetAlert('Oops', E_SERVER_ERROR, 'error')
 			}
+		},
+		'closeAside': function(){
+			this.preview_show = false
 		}
 	}
 })

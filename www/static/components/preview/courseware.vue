@@ -21,6 +21,8 @@
 </template>
 
 <script>
+	require('core/open/sweet/alert')
+
 	return {
 		props : ['courseid']
 		, data : function(){
@@ -43,6 +45,10 @@
 				$.get(url, { 'course_id': id }, function(res){
 					if(res.status_code == 200){
 						mSelf.$set('detail', res.data)
+					} else {
+						sweetAlert({ title: res.message, type: 'error' }, function(){
+							mSelf.$dispatch('closeAside')
+						})
 					}
 				}, 'json')
 			},
