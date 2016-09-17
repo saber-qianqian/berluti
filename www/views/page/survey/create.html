@@ -73,11 +73,13 @@
 						</ul>
 					</dropdown>
 				</div>
+				<div class="form-group" v-if="publish_url"><label class="control-label">发布链接</label><div class="input_box"><div class="form-control btn btn-info" @click="openUrl">打开发布链接</div></div></div>
 			</div>
 			<div class="tool_box">
 				<div class="btn btn-primary" @click="previewSurvey">预览效果</div>
-				<div v-if="id" class="btn btn-primary" @click="saveCourse">保存问卷</div>
-				<div v-else class="btn btn-primary" @click="saveCourse">创建问卷</div>
+				<div v-if="id" class="btn btn-primary" @click="saveCourse(true)">保存问卷</div>
+				<div v-if="id" class="btn btn-primary" @click="publicPage">发布问卷</div>
+				<div v-else class="btn btn-primary" @click="saveCourse(true)">创建问卷</div>
 			</div>
 		</div>
 	</div>

@@ -82,6 +82,7 @@ var controlFns = {
 			, 'update': '/api/survey/update'
 			, 'delete': '/api/survey/delete'
 			, 'show': '/api/survey/show'
+			, 'publish': '/api/survey/publish'
 		}
 
 		this.ajaxTo(php[params])

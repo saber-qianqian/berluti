@@ -1,0 +1,11 @@
+<%# block/head.html %>
+
+<preview-survey></preview-survey>
+
+<script>
+	fml.vars.id = <%= this.preview_id %>;
+</script>
+
+<%== loader.loadJS(['page/survey/preview']); %>
+
+<%# block/foot.html %>

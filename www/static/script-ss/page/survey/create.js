@@ -7,6 +7,7 @@ var api = {
 	, 'update': '/aj/api/survey/update'
 	, 'delete': '/aj/api/survey/delete'
 	, 'show': '/aj/api/survey/show'
+	, 'public': '/aj/api/survey/publish'
 }
 
 urlParams = urlParams.getParams(location.href)
@@ -41,10 +42,11 @@ var vm = new Vue({
 			, id: urlParams.id
 
 			, preview_show: false
+			, publish_url: ''
 		}
 	},
 	methods: {
-		saveCourse: function() {
+		saveCourse: function(showAlert) {
 			var mSelf = this
 
 			if(!this.formdata.name) return sweetAlert({ title: '标题不能为空', type: 'warning' })
@@ -65,7 +67,7 @@ var vm = new Vue({
 
 			$.post(url, formdata, function(res) {
 				if(res.status_code == 200){
-					sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
+					showAlert && sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
 						window.location.reload()
 					})
 				}
@@ -81,6 +83,8 @@ var vm = new Vue({
 						mSelf.formdata[key] = '' + resData[key]
 					}
 					mSelf.content = JSON.parse(resData.content)
+
+					mSelf.publish_url = resData.publish_url || ''
 				} else {
 					mSelf.id = ''
 				}
@@ -112,6 +116,24 @@ var vm = new Vue({
 			})
 		}
 
+		, publicPage: function(){
+			var mSelf = this
+
+			this.saveCourse(false)
+			$.post(api.public, {id: mSelf.id, publish_content: '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>调查问卷</title><style>body{ margin: 0;padding: 0;outline: 0;position: absolute;top: 0;left: 0;bottom: 0;right: 0; }iframe{ width: 100%;height: 100%;border: none;padding: 0; }</style></head><body><iframe src="/manage/survey/preview/' + mSelf.id + '" frameborder="0"></iframe></body></html>'}, function(res){
+				if(res.status_code == 200){
+					mSelf.publish_url = res.message
+					sweetAlert('发布成功')
+				}
+			}, 'json')
+		}
+		, openUrl: function(){
+			if(this.publish_url.indexOf('http') > -1){
+				window.open(this.publish_url)
+			} else {
+				window.open('http://' + this.publish_url)
+			}
+		}
 		, previewSurvey: function(){
 			this.preview_show = true
 		}
