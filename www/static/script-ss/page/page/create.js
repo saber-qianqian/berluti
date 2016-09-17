@@ -28,10 +28,11 @@ var vm = new Vue({
 				content: ''
 			}
 			, id: urlParams.id || ''
+			, publish_url: ''
 		}
 	},
 	methods: {
-		saveCourse: function() {
+		saveCourse: function(showAlert) {
 			var mSelf = this
 
 			var formdata = JSON.parse(JSON.stringify(this.formdata))
@@ -44,7 +45,7 @@ var vm = new Vue({
 
 			$.post(url, formdata, function(res) {
 				if(res.status_code == 200){
-					sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
+					showAlert && sweetAlert({ title: mSelf.id ? '保存成功' : '创建成功' }, function(){
 						window.location.reload()
 					})
 				}
@@ -59,13 +60,37 @@ var vm = new Vue({
 					for(var key in mSelf.formdata){
 						mSelf.formdata[key] = '' + resData[key]
 					}
+
+					mSelf.publish_url = resData.publish_url || ''
 				} else {
 					mSelf.id = ''
 				}
 			}, 'json')
 		}
+		, publishPage: function(){
+			var mSelf = this
+
+			mSelf.saveCourse(false)
+
+			$.get('/aj/api/page/publish', { id: mSelf.id }, function(res){
+				if(res.status_code == 200){
+					mSelf.publish_url = res.message
+
+					sweetAlert('发布成功')
+				}
+			}, 'json')
+		}
 		, previewPage: function(){
+			this.saveCourse(false)
+
 			window.open('/manage/page/preview/main?id=' + this.id)
+		}
+		, openUrl: function(){
+			if(this.publish_url.indexOf('http') > -1){
+				window.open(this.publish_url)
+			} else {
+				window.open('http://' + this.publish_url)
+			}
 		}
 	},
 	ready: function(){

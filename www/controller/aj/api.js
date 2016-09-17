@@ -71,6 +71,7 @@ var controlFns = {
 			, 'update': '/api/page/update'
 			, 'delete': '/api/page/delete'
 			, 'show': '/api/page/show'
+			, 'publish': '/api/page/publish'
 		}
 
 		this.ajaxTo(php[params])
