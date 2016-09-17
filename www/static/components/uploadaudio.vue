@@ -492,6 +492,7 @@
 				uploadBtn.bind($(mSelf.$els.elUploadBtn), {
 					'behind': '/api/upload/audios'
 					, 'inputName': 'audios'
+					, 'accept': 'audio/mp3'
 					, 'success': function(res){
 						if(res.status_code == 200){
 							mSelf.value = res.data.id

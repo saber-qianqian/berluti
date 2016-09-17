@@ -104,6 +104,7 @@
 			uploadBtn.bind($(mSelf.$els.elUploadBtn), {
 				'behind': '/api/upload/images'
 				, 'inputName': 'images'
+				, 'accept': 'image/png,image/jpg,image/webp,image/jpeg'
 				, 'success': function(res){
 					if(res.status_code == 200){
 						if(mSelf.multi){
