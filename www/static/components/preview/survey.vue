@@ -30,7 +30,19 @@
 		components: {
 			surveyItem: require('preview/survey_item.vue')
 		}
-		, props: ['detail', 'content']
+		, props: {
+			'detail': {
+				type: Object
+				, default: function(){
+					return {}
+				}
+			}, 'content': {
+				type: Array
+				, default: function(){
+					return []
+				}
+			}
+		}
 		, events: {
 			'previewShow': function(id){
 				this.getDetail(id)
