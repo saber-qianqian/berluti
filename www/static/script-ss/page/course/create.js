@@ -72,8 +72,8 @@ var vm = new Vue({
 		}
 		, dateCorrectEarly: function(pre, next, type){
 			var formdata = this.formdata
-			formdata[pre] = formdata[pre] && formdata[pre].replace(/.{2}$/, '00')
-			formdata[next] = formdata[next] && formdata[next].replace(/.{2}$/, '00')
+			formdata[pre] = formdata[pre] && formdata[pre].replace(/.{2}$/, '00').replace(/-/g, '/')
+			formdata[next] = formdata[next] && formdata[next].replace(/.{2}$/, '00').replace(/-/g, '/')
 
 			if(!+new Date(formdata[pre]) || !+new Date(formdata[next])) return ;
 
